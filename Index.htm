@@ -1,0 +1,151 @@
+<!--
+JavaScript Canvas Wolfenstein 3D Raycaster
+Author: Andrew Lim
+https://github.com/andrew-lim/html5-raycast
+
+<<<<<<< HEAD
+re-adjusted and changed
+lets see
+=======
+re-adjusted
+>>>>>>> 651087c (try to see)
+-->
+<html>
+<head>
+<title>JavaScript Raycasting Engine</title>
+<script type="module" src="raycaster.js"></script>
+<script type="module" src="java_functions.js"></script>
+<style>
+body {
+  background-color: rgb(168, 232, 243);
+  height: 100%; overflow: hidden;
+  color: white;
+}
+table {
+  font-family: "Courier New";
+  font-size: 12pt;
+}
+div#minimapcontainer {
+
+}
+canvas#minimap {
+ position : absolute;
+}
+canvas#minimapobjects {
+ position : absolute;
+}
+
+#mainCanvas {
+ position : absolute;
+ background-color : none;
+ /*
+ Let's try this
+ hello added another hello and another hello again
+ Do not set canvas dimensions via CSS, use HTML attributes instead
+ https://stackoverflow.com/a/27706093/1645045
+ */
+}
+
+#screen {
+ margin-left: auto;
+ margin-right:auto;
+ width: 480px;
+ height: 320px;
+
+
+ border-top : 4px solid rgb(215, 245, 202);
+ border-left: 4px solid rgb(182, 238, 240);
+ border-right: 4px solid #c0fffc;
+ border-bottom: 4px solid #caf8f6;
+ overflow : hidden;
+}
+
+</style>
+
+</head>
+<body>
+  <div id="div_textures" style="display: none;">
+    <!-- <img> tags will be dynamically added here by Raycaster.loadImages() -->
+  </div>
+  <div id="screen">
+    <canvas id="mainCanvas"></canvas>
+  </div>
+  <div style="display: flex; flex-direction: row; justify-content: center; align-content: center;">
+    <table cellspacing="10">
+      <tr>
+        <td style="color: rgb(0, 0, 0);">clicking there does nothing</td>
+        <td>
+          <select name="ceilingHeight" id="ceilingHeight" onchange="javascript:this.blur()">
+            <option>clicking here</option>
+            <option  >does</option>
+            <option>nothing</option>
+            <option>seriously</option>
+            
+          </select>
+        </td>
+      </tr>
+      <tr>
+        
+      </tr>
+      <tr>
+       
+      </tr>
+      <tr>
+
+       
+        <td><label style="color: rgb(0, 0, 0);">PRESS WASD TO MOVE AND SPACE BAR TO SHOOT/CHANGE YOUR CO-ORDINATES. AND Q TO RESET.HOLDING DOWN SPACE INSTEAD OF PRESSING IS CHEATING AND WILL LAG GAME AS PUNISHMENT</label></td>
+      </tr>
+      <tr>
+
+        <td><label  id="missionLabel" style="color: rgb(0, 171, 238);">Mission 1:SHOOT the WALLS</label></td>
+       
+      </tr>
+    </table>
+    <div id="minimapcontainer">
+      <canvas id="minimap"></canvas>
+      <canvas id="minimapobjects"></canvas>
+      
+    </div>
+  </div>
+ 
+  <script type="module" >
+    
+   
+   
+    
+    let raycaster = new Raycaster(document.getElementById("mainCanvas"))
+    window.onload = function() {
+      
+      
+      raycaster.gameCycle();
+      
+     
+      
+      
+    }
+    
+
+    
+   
+  </script>
+   <script src="raycaster.js"></script>
+   <script type="module" src="java_functions.js">
+    
+   </script>
+
+
+   <script type="text/javascript">
+
+window.onload = function() {
+     
+    }
+   </script>
+   <script>
+     
+     if (window.disp_h == false){
+       
+       document.getElementById("missionLabel").textContent = "hello";
+     }
+   
+   </script>
+</body>
