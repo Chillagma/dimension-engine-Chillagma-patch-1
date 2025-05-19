@@ -6,7 +6,7 @@ https://github.com/andrew-lim/html5-raycast
 You might need to install the extension "live server" to use the HTML file, as you play in the browser if you are using VS code.
 
 
-
+The main cause of the effects in the game is caused by the cameras.
 The main distortions of the cameras are from  lines 409-606 approximately(approximate as code may change in the future)
 
 Also, the projectile is being shot from approximately lines 858-882.
