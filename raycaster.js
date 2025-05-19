@@ -908,16 +908,38 @@ this.imageconf2 =[
 
 
         
-        
+        //original
         let rayAngle = Math.atan(screenX/ this.viewDist)
+
+        //hyperbolic-ish style
         //let rayAngle = Math.atan(screenX/ this.viewDist*screenX/44)
-        //let rayAngle = Math.atan(screenX / this.viewDist)*10
-        // let rayAngle = Math.atan(screenX / this.viewDist)*100
-        //let rayAngle =Math.atan(screenX / this.viewDist)*1/(screenX / this.viewDist)*10
-         //let rayAngle = Math.atan(Math.log((screenX/ this.viewDist),2))
+
+
+          //non-motion
          //let rayAngle = Math.atan(Math.pow(screenX/ this.viewDist,2))
-        // let rayAngle = Math.atan(Math.pow(screenX/ this.viewDist,9))
-        //let rayAngle = Math.tan(screenX/ this.viewDist)
+
+        //non-motion level 2
+         // let rayAngle = Math.atan(Math.pow(screenX/ this.viewDist,9))
+
+          //truer hyperbolic 1.25
+         // let rayAngle = Math.tan(screenX/ this.viewDist)
+
+         
+        //hyperblic level 1.5
+         //let rayAngle = Math.atan(Math.log((screenX/ this.viewDist),2))
+
+          //hypeboli-ish level 2
+        //let rayAngle = Math.atan(screenX / this.viewDist)*10
+
+       //hypebolic-ish level 3
+        // let rayAngle = Math.atan(screenX / this.viewDist)*100
+
+          //hyperbolic-sh mixture
+        //let rayAngle =Math.atan(screenX / this.viewDist)*1/(screenX / this.viewDist)*50
+
+
+
+       
 
 
         
