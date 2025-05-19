@@ -855,7 +855,7 @@ this.imageconf2 =[
     const space_down= this.keysDown[KEY_SPACE] || this.keysDown[KEY_SPACE]
     // Clear the buffer every 10 frames
   
-    
+    //this where you shoot the projectile
     this.mainCanvasContext.putImageData(this.backBuffer, 0, 0);
     
     if(space_down&&shrink>50){
