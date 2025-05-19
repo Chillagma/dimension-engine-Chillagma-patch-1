@@ -119,6 +119,7 @@ class Raycaster
       rotSpeed : 1.5 * Math.PI / 270/2
     }
   }
+  //this is where you want to design the levels.
   initMap()
   {
     this.map = [
@@ -487,7 +488,7 @@ this.imageconf2 =[
    
    
    
-   // we use multiple cameras
+   // we use multiple cameras 
     for (let texY=texStartY, screenY=screenStartY; screenY<dstEndY && screenY<this.displayHeight; screenY++, texY+=texStepY) {
       for(let texX=texStartX, screenX=screenStartX; screenX<dstEndX && screenX<this.displayWidth; screenX++, texX+=texStepX) {
         let textureX = Math.trunc(texX)
