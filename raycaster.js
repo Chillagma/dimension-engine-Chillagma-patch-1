@@ -904,7 +904,23 @@ this.imageconf2 =[
       this.rayAngles = [];
       for (let i=0;i<this.rayCount;i++) {
         let screenX = (this.rayCount/2 - i) * this.stripWidth
+
+
+
+        
+        
         let rayAngle = Math.atan(screenX/ this.viewDist)
+        //let rayAngle = Math.atan(screenX/ this.viewDist*screenX/44)
+        //let rayAngle = Math.atan(screenX / this.viewDist)*10
+        // let rayAngle = Math.atan(screenX / this.viewDist)*100
+        //let rayAngle =Math.atan(screenX / this.viewDist)*1/(screenX / this.viewDist)*10
+         //let rayAngle = Math.atan(Math.log((screenX/ this.viewDist),2))
+         //let rayAngle = Math.atan(Math.pow(screenX/ this.viewDist,2))
+        // let rayAngle = Math.atan(Math.pow(screenX/ this.viewDist,9))
+        //let rayAngle = Math.tan(screenX/ this.viewDist)
+
+
+        
 
         if(some_x==false){
           //this.rayAngles.push(0)
