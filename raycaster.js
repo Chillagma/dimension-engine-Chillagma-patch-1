@@ -487,7 +487,7 @@ this.imageconf2 =[
    
    
    
-   
+   // we use multiple cameras
     for (let texY=texStartY, screenY=screenStartY; screenY<dstEndY && screenY<this.displayHeight; screenY++, texY+=texStepY) {
       for(let texX=texStartX, screenX=screenStartX; screenX<dstEndX && screenX<this.displayWidth; screenX++, texX+=texStepX) {
         let textureX = Math.trunc(texX)
