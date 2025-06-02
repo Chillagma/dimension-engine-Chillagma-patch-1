@@ -298,6 +298,8 @@ this.imageconf2 =[
     this.past = Date.now()
 
     this.loadImages()
+    // Load and draw the cube OBJ after initialization
+    this.loadOBJ();
   }
 
   /**
@@ -1432,7 +1434,61 @@ this.imageconf2 =[
    // objectCtx.closePath();
     //objectCtx.stroke();
   }
+  // Simple OBJ loader for vertices and faces
+  loadOBJ(onLoad) {
+    fetch('cube.obj')
+      .then(res => res.text())
+      .then(text => {
+        const vertices = [];
+        const faces = [];
+        text.split('\n').forEach(line => {
+          let parts = line.trim().split(/\s+/);
+          if (parts[0] === 'v') {
+            vertices.push(parts.slice(1).map(Number));
+          } else if (parts[0] === 'f') {
+            let indices = parts.slice(1).map(i => parseInt(i) - 1);
+            for (let i = 1; i < indices.length - 1; i++) {
+              faces.push([indices[0], indices[i], indices[i + 1]]);
+            }
+          }
+        });
+        if (typeof onLoad === 'function') {
+          onLoad({ vertices, faces });
+        }
+        // Automatically draw the cube after loading
+        this.drawOBJ({ vertices, faces });
+      });
+  }
 
+  // Simple wireframe OBJ renderer (orthographic projection)
+  drawOBJ(obj) {
+    if (!obj || !obj.vertices || !obj.faces) return;
+    const ctx = this.mainCanvasContext;
+    ctx.save();
+    ctx.strokeStyle = 'yellow';
+    ctx.lineWidth = 2;
+    // Center and scale cube for visibility
+    const scale = 40;
+    const offsetX = this.displayWidth / 2;
+    const offsetY = this.displayHeight / 2;
+    for (const face of obj.faces) {
+      ctx.beginPath();
+      for (let i = 0; i < face.length; i++) {
+        const vIdx = face[i];
+        const v = obj.vertices[vIdx];
+        const x = offsetX + v[0] * scale;
+        const y = offsetY - v[1] * scale;
+        if (i === 0) {
+          ctx.moveTo(x, y);
+        } else {
+          ctx.lineTo(x, y);
+        }
+      }
+      ctx.closePath();
+      ctx.stroke();
+    }
+    ctx.restore();
+  }
   drawMiniMap() {
     let miniMap = document.getElementById("minimap");     // the actual map
     let miniMapCtr = document.getElementById("minimapcontainer");   // the container div element
@@ -1471,7 +1527,48 @@ this.imageconf2 =[
         }
       }
     }
+async function loadOBJ(url) {
+  const response = await fetch(url);
+  const text = await response.text();
+  const lines = text.split('\n');
 
-    this.updateMiniMap();
+  let vertices = [];
+  let faces = [];
+
+  for (let line of lines) {
+    line = line.trim();
+    if (line.startsWith('v ')) {
+      const [, x, y, z] = line.split(/\s+/);
+      vertices.push([parseFloat(x), parseFloat(y), parseFloat(z)]);
+    } else if (line.startsWith('f ')) {
+      const parts = line.split(/\s+/).slice(1);
+      const face = parts.map(p => {
+        const [vi] = p.split('/');
+        return parseInt(vi) - 1; // OBJ indices are 1-based
+      });
+      faces.push(face);
+    }
   }
+
+  return { vertices, faces };
+}
+    // Draw the player character on the minimap
+    this.updateMiniMap();
+    async function initMiniMapObjects() {
+  const obj = await loadOBJ('./cube.obj'); // Replace with your model path
+
+  const ctx = document.getElementById("minimapobjects").getContext("2d");
+  ctx.fillStyle = "yellow"; // Color for OBJ markers
+
+  for (let v of obj.vertices) {
+    let x = v[0] * Raycaster.MINIMAP_SCALE;
+    let y = v[2] * Raycaster.MINIMAP_SCALE; // Assuming Z is height
+
+    ctx.fillRect(x, y, 3, 3); // Draw tiny dot
+  }
+}
+
+initMiniMapObjects();
+  }
+  
 }
